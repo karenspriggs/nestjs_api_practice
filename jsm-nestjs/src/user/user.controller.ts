@@ -11,6 +11,7 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
+import { ParseIntPipe } from '@nestjs/common';
 
 @Controller('user')
 export class UserController {
@@ -23,7 +24,7 @@ export class UserController {
   }
 
   @Get(':id')
-  getUserById(@Param('id') id: number): unknown {
+  getUserById(@Param('id', ParseIntPipe) id: number): unknown {
     return this.userService.getUserById(id);
   }
 
